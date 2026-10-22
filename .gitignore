@@ -1,0 +1,55 @@
+# Environment & secret files
+.env
+.env.local
+*.env
+!.env.example
+
+# Data files & dataset caches
+[Dd]ata/
+*gujarati_sentences.txt
+*.csv
+*.npz
+*.parquet
+
+# Model checkpoints & binary weights
+*.pkl
+*.pickle
+*.pth
+*.pt
+*.bin
+*.h5
+*.model
+*.onnx
+*.safetensors
+
+# Training run artifacts & outputs
+run/
+spm/
+
+# Python cache & virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+ENV/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Temporary & script files
+*.log
+*.tmp
+clean_files.bat
+powershell.bat
