@@ -43,3 +43,19 @@ class _FallbackFinder(importlib.abc.MetaPathFinder):
 
 if not any(isinstance(f, _FallbackFinder) for f in sys.meta_path):
     sys.meta_path.append(_FallbackFinder())
+
+# Ensure torch.load defaults to weights_only=False for OpenNMT checkpoints under PyTorch 2.6+
+try:
+    import torch
+    import torch.serialization
+    if not getattr(torch.load, '_safe_patched', False):
+        _real_load = torch.serialization.load
+        def _safe_load(*args, **kwargs):
+            kwargs.setdefault('weights_only', False)
+            return _real_load(*args, **kwargs)
+        _safe_load._safe_patched = True
+        torch.load = _safe_load
+        torch.serialization.load = _safe_load
+except ImportError:
+    pass
+
